@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="MyFamily" content="MyFamily organization app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="/main.css" rel="stylesheet">
+  <title>ATL FIRE</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <main class="main">
+    <header class="header">
+      <img class="logo" src="/images/fireLogo.png" alt="fire logo" />
+      <div class="player">
+        <img src="/images/player.png" alt="fire player" />
+      </div>
+      <div class="app-name">Atlanta Fire Videos</div>
+    </header>
+
+    <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+    <section class="video-player">
+
+      <div id="player"></div>
+      <script type="text/javascript">
+        // Call API and determine if there is a live stream
+        const clientId = '14uxjgrat0qftgh91irfs233ido5rr'
+        const clientSecret = '8norbld6xn7ifauiqookz1jmsda2jz'
+        fetch(`https://id.twitch.tv/oauth2/token?client_id=${clientId}&client_secret=${clientSecret}&grant_type=client_credentials&scope=bits:read`, {
+          method: 'POST',
+        })
+          .then(res =>
+            (!res.ok)
+              ? res.json().then(e => Promise.reject(e))
+              : res.json()
+          )
+          .then(token => {
+            fetch(`https://api.twitch.tv/helix/streams?user_id=570498824`, {
+              method: 'GET',
+              headers: {
+                'Client-ID': clientId,
+                'Authorization': `Bearer ${token.access_token}`,
+              }
+            })
+              .then(res =>
+                (!res.ok)
+                  ? res.json().then(e => Promise.reject(e))
+                  : res.json()
+              )
+              .then(status => {
+                console.log(status.data[0])
+                let display = status.data[0] ? { channel: "atl_hockey" } : { collection: "KKAnqEqKLhauPA" }
+                return display
+              })
+              .then(display => {
+                console.log(display)
+                var options = {
+                  width: 600,
+                  height: 400,
+                  ...display
+                  // channel: "atl_hockey",
+                  // video: "skybase",
+                  // collection: "KKAnqEqKLhauPA",
+                  // only needed if your site is also embedded on embed.example.com and othersite.example.com
+                  // parent: ["embed.example.com", "othersite.example.com"]
+                };
+                var player = new Twitch.Player("player", options);
+                player.setVolume(0.5);
+              })
+          })
+        // If so display the channel
+        // If not display the collection
+        // let display = { channel: "atl_hockey" }
+        // let display = { collection: "KKAnqEqKLhauPA" }
+        // var options = {
+        //   width: 600,
+        //   height: 400,
+        //   ...display
+        //   // channel: "atl_hockey",
+        //   // video: "skybase",
+        //   // collection: "KKAnqEqKLhauPA",
+        //   // only needed if your site is also embedded on embed.example.com and othersite.example.com
+        //   // parent: ["embed.example.com", "othersite.example.com"]
+        // };
+        // var player = new Twitch.Player("player", options);
+        // player.setVolume(0.5);
+      </script>
+    </section>
+  </main>
+</body>
+
+</html>

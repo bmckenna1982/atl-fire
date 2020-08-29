@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+}
+
+.main {
+  width: 100%;
+}
+
+body {  display: flex;
+  justify-content: center;
+  
+}
+
+.header { 
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  height: 150px;
+  background-color: #aaa;
+}
+
+.logo {
+  position: absolute;  
+  width: 150px;
+  top: 10px;
+  left: 10px;
+}
+
+.player {
+  position: absolute;
+  width: 150px;
+  top: 10px;
+  left: 170px;
+}
+
+.app-name {
+  justify-content: flex-end;
+  font-size: 3em;
+  font-weight: 600;
+  color: #CC0000;
+  text-shadow: 1px 0px 1px #222, 0px 1px 1px #333, 2px 1px 1px #222, 1px 2px 1px #333, 3px 2px 1px #222, 2px 3px 1px #333, 4px 3px 1px #222, 3px 4px 1px #333, 5px 4px 1px #222, 4px 5px 1px #333, 6px 5px 1px #222, 5px 6px 1px #333, 7px 6px 1px #222;
+  
+}
+
+.video-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
