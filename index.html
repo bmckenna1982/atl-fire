@@ -18,81 +18,102 @@
   <main class="main">
     <header class="header">
       <img class="logo" src="/images/fireLogo.png" alt="fire logo" />
-      <div class="player">
+      <!-- Do not show on mobile -->
+      <!-- <div class="player">
         <img src="/images/player.png" alt="fire player" />
-      </div>
+      </div> -->
       <div class="app-name">Atlanta Fire Videos</div>
     </header>
 
     <script src="https://player.twitch.tv/js/embed/v1.js"></script>
-    <section class="video-player">
-
-      <div id="player"></div>
-      <script type="text/javascript">
-        // Call API and determine if there is a live stream
-        const clientId = '14uxjgrat0qftgh91irfs233ido5rr'
-        const clientSecret = '8norbld6xn7ifauiqookz1jmsda2jz'
-        fetch(`https://id.twitch.tv/oauth2/token?client_id=${clientId}&client_secret=${clientSecret}&grant_type=client_credentials&scope=bits:read`, {
-          method: 'POST',
-        })
-          .then(res =>
-            (!res.ok)
-              ? res.json().then(e => Promise.reject(e))
-              : res.json()
-          )
-          .then(token => {
-            fetch(`https://api.twitch.tv/helix/streams?user_id=570498824`, {
-              method: 'GET',
-              headers: {
-                'Client-ID': clientId,
-                'Authorization': `Bearer ${token.access_token}`,
-              }
-            })
-              .then(res =>
-                (!res.ok)
-                  ? res.json().then(e => Promise.reject(e))
-                  : res.json()
-              )
-              .then(status => {
-                console.log(status.data[0])
-                let display = status.data[0] ? { channel: "atl_hockey" } : { collection: "KKAnqEqKLhauPA" }
-                return display
-              })
-              .then(display => {
-                console.log(display)
-                var options = {
-                  width: 600,
-                  height: 400,
-                  ...display
-                  // channel: "atl_hockey",
-                  // video: "skybase",
-                  // collection: "KKAnqEqKLhauPA",
-                  // only needed if your site is also embedded on embed.example.com and othersite.example.com
-                  // parent: ["embed.example.com", "othersite.example.com"]
-                };
-                var player = new Twitch.Player("player", options);
-                player.setVolume(0.5);
-              })
-          })
-        // If so display the channel
-        // If not display the collection
-        // let display = { channel: "atl_hockey" }
-        // let display = { collection: "KKAnqEqKLhauPA" }
-        // var options = {
-        //   width: 600,
-        //   height: 400,
-        //   ...display
-        //   // channel: "atl_hockey",
-        //   // video: "skybase",
-        //   // collection: "KKAnqEqKLhauPA",
-        //   // only needed if your site is also embedded on embed.example.com and othersite.example.com
-        //   // parent: ["embed.example.com", "othersite.example.com"]
-        // };
-        // var player = new Twitch.Player("player", options);
-        // player.setVolume(0.5);
-      </script>
+    <section class="standings">
+      <div class="standings-container">
+        <div class="standings-field">
+          <div class="standings-title">
+            Wins
+          </div>
+          <div class="standings-number">
+            0
+          </div>
+        </div>
+        <div class="standings-field">
+          <div class="standings-title">
+            Loses
+          </div>
+          <div class="standings-number">
+            0
+          </div>
+        </div>
+        <div class="standings-field">
+          <div class="standings-title">
+            Ties
+          </div>
+          <div class="standings-number">
+            0
+          </div>
+        </div>
+      </div>
+      <div class="next-game">
+        Next game: Saturday 9/5 12PM
+      </div>
+    </section>
+    <section class="twitch">
+      <div class="twitch-video">
+        <iframe src="https://player.twitch.tv/?channel=atl_hockey&parent=localhost" frameborder="0" scrolling="no"
+          allowfullscreen="true" height="100%" width="100%">
+        </iframe>
+      </div>
+    </section>
+    <section class="game-links">
+      <ul class="game-list">
+        <li class="game-link">
+          <div class="game-name">
+            Fire vs Bandits
+          </div>
+          <div class="game-date">
+            Saturday 9/5 12:00PM
+          </div>
+          <div class="game-outcome">
+            Upcoming
+          </div>
+        </li>
+        <li class="game-link">
+          <div class="game-name">
+            Fire vs Center Ice
+          </div>
+          <div class="game-date">
+            Saturday 9/5 1:30PM
+          </div>
+          <div class="game-outcome">
+            Upcoming
+          </div>
+        </li>
+        <li class="game-link">
+          <div class="game-name">
+            Fire vs Center Ice
+          </div>
+          <div class="game-date">
+            Sunday 9/6 10:50AM
+          </div>
+          <div class="game-outcome">
+            Upcoming
+          </div>
+        </li>
+        <li class="game-link">
+          <div class="game-name">
+            Fire vs Bandits
+          </div>
+          <div class="game-date">
+            Sunday 9/6 3:40PM
+          </div>
+          <div class="game-outcome">
+            Upcoming
+          </div>
+        </li>
+      </ul>
     </section>
   </main>
+  <footer>Atlanta Fire Hockey</footer>
 </body>
 
 </html>

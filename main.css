@@ -4,11 +4,12 @@
 
 .main {
   width: 100%;
+  height: calc(100vh - 40px);
+  overflow: auto;
 }
 
-body {  display: flex;
-  justify-content: center;
-  
+body {  
+  margin: 0;
 }
 
 .header { 
@@ -16,15 +17,14 @@ body {  display: flex;
   padding: 10px;
   display: flex;
   justify-content: flex-end;
-  position: relative;
-  height: 150px;
+  position: relative;  
   background-color: #aaa;
 }
 
 .logo {
   position: absolute;  
-  width: 150px;
-  top: 10px;
+  height: 100%;
+  top: 0px;
   left: 10px;
 }
 
@@ -37,15 +37,83 @@ body {  display: flex;
 
 .app-name {
   justify-content: flex-end;
-  font-size: 3em;
+  text-align: right;
+  font-size: 2em;
+  width: 50%;
   font-weight: 600;
   color: #CC0000;
   text-shadow: 1px 0px 1px #222, 0px 1px 1px #333, 2px 1px 1px #222, 1px 2px 1px #333, 3px 2px 1px #222, 2px 3px 1px #333, 4px 3px 1px #222, 3px 4px 1px #333, 5px 4px 1px #222, 4px 5px 1px #333, 6px 5px 1px #222, 5px 6px 1px #333, 7px 6px 1px #222;
   
 }
 
+.standings-container {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  text-align: center;
+  background-color: #eee;
+}
+
+.standings-field {
+  flex: 1;  
+  max-width: 120px;
+}
+
+.next-game {
+  padding: 10px;
+  text-align: center;
+}
+
+.twitch .twitch-video {
+  padding-top: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.twitch .twitch-video iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
 .video-player {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
+}
+
+.game-links {
+  width: 100%;
+  height: 200px;
+  overflow: auto;
+}
+
+.game-list {
+  list-style: none;
+  padding: 0;
+}
+
+.game-link {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.game-name, .game-date, .game-outcome {
+  flex: 1;
+}
+
+.game-name {
+  text-align: left;
+  padding-left: 10px;
+}
+
+footer {  
+  width: 100%;
+  margin: auto;
+  line-height: 40px;  
+  text-align: center;
+  background-color: #aaa;
 }
